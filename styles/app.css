@@ -1,0 +1,596 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --green:#054A49;    
+    --ff-text:'Libre Baskerville', serif;
+    --ff-headings:'Playfair Display SC', serif;
+    --gradient: linear-gradient( to right,#054A49,#5a8483);
+}
+
+header{
+    background-image: var(--gradient);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-task-container{
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    width: 500px;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 150;
+    display: none;
+}
+
+.add-task-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.app-icon-add{
+    transition: transform .3s;
+}
+
+.app-icon-add:hover{
+    transform: scale(1.2);
+}
+
+.add-task-icon p{
+    font-size: 1.5rem;
+    color: white;
+    font-family: var(--ff-headings);
+}
+
+.add-task-container-top{
+    display: flex;
+    align-items: center;
+    width: 80%;
+    justify-content: space-between;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.task-close{
+    font-size: 2rem;
+    color: red;
+    cursor: pointer;
+    transition: transform .3s;
+}
+
+.task-close:hover{
+    transform: scale(1.2);
+}
+
+.add-task-container p{
+    font-size: 2rem;
+    color: var(--green);
+    font-family: var(--ff-headings);
+    font-weight: bold;
+}
+
+.add-task-container input:first-child{
+    width: 80%;
+    height: 40px;
+    font-size: 1rem;
+    padding-left: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    outline: none;
+    color: #054A49;
+    border: 1px solid var(--green);
+    transition: font-size .15s;
+    font-family: var(--ff-text);
+    display: block;
+    margin: 10px auto;
+}
+
+.add-task-container input:nth-child(2){
+    width: 80%;
+    height: 40px;
+    font-size: 1rem;
+    padding-left: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    outline: none;
+    color: #054A49;
+    border: 1px solid var(--green);
+    transition: font-size .15s;
+    font-family: var(--ff-text);
+    display: block;
+    margin: 10px auto;
+}
+
+.add-task-container input:first-child:focus{
+    font-size: 1.25rem;
+}
+
+.add-task-container input:nth-child(2):focus{
+    font-size: 1.25rem;
+}
+
+.add-task-container input::placeholder{
+    color: var(--green);
+}
+
+.add-task-container label{
+    font-size: 1.5rem;
+    color: var(--green);
+    font-family: var(--ff-text);
+    margin-top: 25px;
+    display: block;
+}
+
+#task-date{
+    display: block;
+    margin: 10px auto 20px;
+    border: 1px solid var(--green);
+    padding: 1rem;
+    font-size: 1.25rem;
+    color: var(--green);
+}
+
+.add-task-container button{
+    width: 80%;
+    padding: 15px 0;
+    border: 1px solid white;
+    background-color: var(--green);
+    color: white;
+    border-radius: 10px;
+    transition: all .3s;
+    cursor: pointer;
+    font-family: var(--ff-headings);
+    font-size: 1.25rem;
+}
+
+.add-task-container button:hover{
+    border: 1px solid var(--green);
+    color: var(--green);
+    background-color: white;
+}
+
+.add-task-helper.active > .add-task-container{
+    display: block;
+} 
+
+.form-blur{
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.6;
+    z-index: 100;
+    display: none;
+}
+
+.form-blur.active{
+    display: block;
+}
+
+.app-icon{
+    font-size: 3rem;
+    color: white;
+}
+
+.task-count{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.task-count span{
+    color: white;
+    font-size: 1.5rem;
+    font-family: var(--ff-headings);
+    margin-left: 5px;
+}
+
+#task-counts{
+    font-size: 2.5rem;
+    font-style: italic;
+}
+
+.profile{
+    position: relative;
+}
+
+.profile-submain{
+    position: absolute;
+    display: none;
+    position: absolute;
+    right: 0;
+}
+
+.profile-main:hover + .profile-submain{
+    display: block;
+}
+
+.profile-submain:hover{
+    display: block;
+}
+
+.profile-submain ul{
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.2);
+    list-style: none;
+}
+
+.profile-submain ul p{
+    font-size: 1.25rem;
+    color: var(--green);
+    font-family: var(--ff-headings);
+    margin-bottom: 20px;
+}
+
+.profile-submain ul span{
+    font-family: var(--ff-text);
+    display: block;
+    flex-wrap: nowrap;
+}
+
+.profile-submain ul a{
+    width: 100%;
+    margin: 5px auto;
+    padding: 15px 0;
+    font-size: 1.25rem;
+    color: var(--green);
+    font-family: var(--ff-headings);
+    text-align: center;
+    display: block;
+    border-top: 1px solid gray;
+    text-decoration: none;
+}
+
+.profile-submain ul a:hover{
+    text-decoration: underline;
+}
+
+/*app heading start*/
+
+.app-heading{
+    margin: 50px auto;
+    text-align: center;
+}
+
+.app-heading h1{
+    font-size: 2.5rem;
+    color: var(--green);
+    font-family: var(--ff-headings);
+    padding: 0 2rem;
+}
+
+
+/*app container start*/
+
+.app-container{
+    padding: 5rem;
+    max-width: 1300px;
+    background-image: var(--gradient);
+    color: white;
+    margin: 50px auto;
+}
+
+.app-container-top{
+    width: 440px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    font-family: var(--ff-text);
+    font-size: 2rem;
+    user-select: none;
+    font-style: italic;
+    color: black;
+}
+
+.app-container-middle{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 70px;
+}
+
+.app-container-middle-text h2{
+    font-size: 2.5rem;
+    font-family: var(--ff-headings);
+    font-weight: bold;
+}
+
+.app-container-middle-text-helper{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.app-container-middle-text-helper p{
+    font-size: 1.5rem;
+    font-family: var(--ff-headings);
+}
+
+.add-container-middle-sort > p{
+    font-size: 1.5rem;
+    font-family: var(--ff-headings);
+    margin-bottom: 20px;
+}
+
+.sort-container{
+    font-family: var(--ff-text);
+    position: relative;
+}
+
+.sort-container-main{
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid white;
+    text-align: center;
+    cursor: pointer;
+    width: 200px;
+}
+
+.sort-by-icon{
+    font-size: 2rem;
+}
+
+.sort-container-submain{
+    background-color: white;
+    color: var(--green);
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    z-index: 140;
+    width: 100%;
+    display: none;
+}
+
+.sort-container-submain:hover{
+    display: block;
+}
+
+.sort-container-main:hover + .sort-container-submain{
+    display: block;
+}
+
+.sort-container-submain span{
+    display: block;
+    padding: 10px 20px;
+    font-size: 1.25rem;
+    transition: background-color .3s;
+    cursor: pointer;
+}
+
+.sort-container-submain span:hover{
+    background-color: rgb(183, 183, 183);
+}
+
+.task{
+    width: 100%;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 50px;
+    text-align: center;
+    align-items: center;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;   
+    padding: 30px;
+}
+
+
+.task-remove form button{
+    height: 50px;
+    width: 50px;
+    background-color: none;
+    border: none;
+    transition: transform .3s;
+    cursor: pointer;
+}
+
+.task-remove form button:hover{
+    transform: scale(1.2);
+}
+
+.remove-task-icon{
+    font-size: 3rem;
+    font-weight: normal ;
+}
+
+.task-text{
+    text-align: left;
+}
+
+.task-text p{
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    font-family: var(--ff-text);
+}
+
+.task-text p span{
+    font-size: 1.5rem;
+    font-family: var(--ff-headings);
+    text-decoration: underline;
+}
+
+.task-date > span{
+    font-size: 1.25rem;
+    display: block;
+    margin: 0 auto 20px;
+    color: white;
+    background-color: red;
+    padding: 5px;
+    width: 150px;
+    font-family: var(--ff-text);
+    font-weight: bold;
+}
+
+.task-date p{
+    font-size: 1.25rem;
+    font-family: var(--ff-text);
+    margin-bottom: 20px;
+}
+
+.task-date p span{
+    font-size: 1.5rem;
+    font-family: var(--ff-headings);
+    text-decoration: underline;
+}
+
+/*media queries start*/
+
+@media (max-width: 700px) {
+    .app-icon{
+        font-size: 1.5rem;
+    }
+
+    .add-task-icon{
+        gap: 5px;
+    }
+
+    .add-task-icon p{
+        font-size: 1rem;
+    }
+
+    .task-count span{
+        font-size: 1rem;
+    }
+
+    #task-counts{
+        font-size: 1.5rem;
+    }
+
+    header{
+        padding: 1rem;
+    }
+
+    .task-count{
+        padding: 0 2rem;
+    }
+
+    .add-task-container{
+        padding: 1rem;
+        width: 280px;
+    }
+
+    .add-task-container-top{
+        width: 250px;
+    }
+
+    .add-task-container p{
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .add-task-container input:first-child,.add-task-container input:nth-child(2){
+        font-size: 0.8rem;
+        width: 250px;
+        height: 35px;
+    }
+
+    .add-task-container input:first-child:focus,.add-task-container input:nth-child(2):focus{
+        font-size: 1rem;
+    }
+
+    .add-task-container label{
+        font-size: 1.25rem;
+        margin-top: 15px;
+    }
+
+    #task-date{
+        width: 150px;
+        font-size: 1rem;
+        padding: 0.5rem;
+        margin: 10px auto;
+    }
+
+    .add-task-container button{
+        width: 250px;
+        font-size: 1rem;
+        padding: 10px 0;
+    }
+
+    .app-heading h1{
+        font-size: 2rem;
+    }
+
+    .app-container{
+        padding: 1rem;
+    }
+
+    .app-container-top{
+        font-size: 1.25rem;
+    }
+
+    .app-container-middle{
+        margin-bottom: 40px;
+    }
+
+    .app-container-middle-text h2{
+        font-size: 1.75rem;
+    }
+
+    .app-container-middle-text-helper p{
+        font-size: 1rem;
+    }
+
+    .task{
+        display: block;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .task-remove{
+        margin-bottom: 15px;
+    }
+
+    .task-remove form button{
+        width: 30px;
+        height: 30px;
+    }
+
+    .remove-task-icon{
+        font-size: 1.75rem;
+    }
+
+    .task-text{
+        display: block;
+    }
+
+    .task-text p{
+        text-align: center;
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .task-text p span{
+        font-size: 1.25rem;
+    }
+
+    .task-date p{
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .task-date p span{
+        font-size: 1.25rem;
+    }
+}
